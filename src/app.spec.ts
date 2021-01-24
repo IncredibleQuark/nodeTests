@@ -1,10 +1,12 @@
-import {app} from "./app";
+import {AppRouter} from "./app";
 import * as request from 'supertest';
-import {IHelloBody} from "./IHelloBody";
+import {INewsBody} from "./INewsBody";
+
+const appRouter: AppRouter = new AppRouter();
 
 describe("testing route", () => {
     it("Should get Hello World", async () => {
-        const { body }: {body: IHelloBody} = await request(app).get("/")
+        const {body}: { body: INewsBody } = await request(appRouter.getApp()).get("/")
 
         expect(body).toEqual({
             data: "hello"
